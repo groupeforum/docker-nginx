@@ -2,13 +2,14 @@ FROM nginx
 
 MAINTAINER Florian Girardey <florian@girardey.net>
 
-ADD nginx.conf /etc/nginx/
-ADD wordpress.conf /etc/nginx/sites-available/
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY wordpress.conf /etc/nginx/sites-available/wordpress.conf
+
+RUN mkdir /etc/nginx/sites-enabled
 
 RUN ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/wordpress
-RUN rm /etc/nginx/sites-enabled/default
 
-RUN echo "upstream php-upstream { server php:9000; }" > /etc/nginx/conf.d/upstream.conf
+COPY php-fpm.conf /etc/nginx/conf.d/php-fpm.conf
 
 RUN usermod -u 1000 www-data
 
