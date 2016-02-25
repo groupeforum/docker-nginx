@@ -1,2 +1,2 @@
 # docker-nginx
-A NGINX Docker image.
+A lightweight NGINX Image based on Alpine Linux
