@@ -16,6 +16,7 @@ RUN apk --update add openssl-dev pcre-dev zlib-dev curl build-base \
 		--error-log-path=/var/log/nginx/error.log \
 		--with-http_ssl_module \
 		--with-http_gzip_static_module \
+		--with-http_v2_module \
 	&& make -j $(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
 	&& make install \
 	&& apk del build-base \
